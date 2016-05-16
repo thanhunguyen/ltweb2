@@ -272,6 +272,7 @@
     <Compile Include="Models\Loai.cs">
       <DependentUpon>LTWEB2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\LTWEB2.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -14,5 +14,12 @@ namespace LTWEB2
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
+
+        protected void Session_Start(object sender, EventArgs e)
+        {
+            Session["IsLogin"] = 0;
+            Session["CurUser"] = null;
+            //Session["Cart"] = new Helpers.Cart();
+        }
     }
 }

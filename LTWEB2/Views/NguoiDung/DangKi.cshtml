@@ -1,29 +1,46 @@
 ﻿@model LTWEB2.Models.RegisterModel
+@using BotDetect.Web.Mvc;
 
+@section css {
+    <link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl"
+          rel="stylesheet" type="text/css" />
+}
 @section view_title{
     Đăng kí thành viên
 }
+@if (ViewBag.Error != null)
+{
+    
+        <div class="alert alert-dismissible
+              @if (ViewBag.Error == 0 || ViewBag.Error == 2) {<text>alert-warning</text>}
+              @if (ViewBag.Error == 1) {<text>alert-success</text>}
+              " role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            @if (ViewBag.Error == 0)
+            {<text>Lỗi, @Model.UID đã tồn tại</text>}
+            @if (ViewBag.Error == 1)
+            {<text>Đăng kí thành công, bạn đã có thể đăng nhập bằng tài khoản vừa tạo</text>}
+            @if (ViewBag.Error == 2)
+            {<text>Lỗi, mã xác nhận vừa nhập không khớp với hình</text>}
+        </div>
+  
+}
 
-<div class="alert alert-warning alert-dismissible @if (ViewBag.Error == null) {<text>hidden</text>}" role="alert">
-<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <strong>Lỗi,</strong> @ViewBag.Error Vui lòng chọn tên đăng nhập khác
-</div>
-
-<form class='form-horizontal'method='post'>
+<form class='form-horizontal' method='post'>
     <div id='nut' class='form-group'>
         <label for='username' class='col-sm-3 control-label'>Tên đăng nhập</label>
         <div class='col-sm-6'>
-            <input name='UID' type='text' class='form-control' id='username' placeholder='Username' value = '@if (Model != null) {<text>@Model.UID</text>}'>
+            <input name='UID' type='text' class='form-control' id='username' placeholder='Username' value='@if (Model != null) {<text>@Model.UID</text>}'>
         </div>
     </div>
 
-     
+
 
 
     <div id='nut' class='form-group'>
         <label for='password' class='col-sm-3 control-label'>Mật khẩu</label>
         <div class='col-sm-6'>
-            <input name='PWD' type='password' class='form-control' id='password' placeholder='Password' >
+            <input name='PWD' type='password' class='form-control' id='password' placeholder='Password'>
         </div>
     </div>
 
@@ -39,14 +56,32 @@
     <div id='nut' class='form-group'>
         <label for='fullname' class='col-sm-3 control-label'>Tên đầy đủ</label>
         <div class='col-sm-6'>
-            <input name='FullName' type='text' class='form-control' id='fullname' placeholder='Fullname'  value = '@if (Model != null) {<text>@Model.FullName</text>}'>
+            <input name='FullName' type='text' class='form-control' id='fullname' placeholder='Fullname' value='@if (Model != null) {<text>@Model.FullName</text>}'>
         </div>
     </div>
 
     <div class="form-group">
         <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
         <div class="col-sm-6">
-            <input name ="Email" type="email" class="form-control" id="inputEmail3" placeholder="Email"  value = '@if (Model != null) {<text>@Model.Email</text>}'>
+            <input name="Email" type="email" class="form-control" id="inputEmail3" placeholder="Email" value='@if (Model != null) {<text>@Model.Email</text>}'>
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        @{
+            MvcCaptcha exampleCaptcha = new MvcCaptcha("ExampleCaptcha");
+        }
+        <div class="col-sm-offset-3 col-sm-6">
+            @Html.Captcha(exampleCaptcha)
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <label for="inputEmail3" class="col-sm-3 control-label">Mã xác nhận</label>
+        <div class="col-sm-6">
+            <input name="CaptchaCode" type="text" class="form-control" placeholder="Captcha">
         </div>
     </div>
 
