@@ -1,0 +1,18 @@
+﻿
+@using LTWEB2.Models
+
+@model List<Loai>
+
+
+
+        @foreach (Loai c in Model)
+        {
+
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@c.TenLoai<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">@Html.Action("ListNSX","NhaSanXuat")</a></li>
+                </ul>
+            </li>
+
+        }

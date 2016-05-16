@@ -1,0 +1,15 @@
+﻿
+@using LTWEB2.Models
+
+@model List<NhaSanXuat>
+
+<div class="list-group">
+
+    @foreach (NhaSanXuat c in Model)
+    {
+        <a class="list-group-item">
+            @c.TenNhaSanXuat
+           
+        </a>
+    }
+</div>

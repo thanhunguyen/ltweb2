@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0e7c0fd85c2d431d99fca75428aae887" Name="Diagram1">
+        <EntityTypeShape EntityType="LTWEB2Model.ChiTietGioHang" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTWEB2Model.GioHang" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTWEB2Model.Loai" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTWEB2Model.NguoiDung" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTWEB2Model.NhaSanXuat" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTWEB2Model.SanPham" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="LTWEB2Model.FK_CTGioHang_GioHang" ManuallyRouted="false" />
+        <AssociationConnector Association="LTWEB2Model.FK_CTGioHang_SanPham" ManuallyRouted="false" />
+        <AssociationConnector Association="LTWEB2Model.FK_GioHang_NguoiDung" ManuallyRouted="false" />
+        <AssociationConnector Association="LTWEB2Model.FK_SanPham_Loai" ManuallyRouted="false" />
+        <AssociationConnector Association="LTWEB2Model.FK_SanPham_NhaSanXuat" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
