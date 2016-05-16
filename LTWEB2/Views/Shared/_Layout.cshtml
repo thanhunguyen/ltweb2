@@ -25,7 +25,6 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-
                     @Html.Action("ListPartial", "Loai")
                 </ul>
                 <form class="navbar-form navbar-left" role="search">
@@ -34,34 +33,15 @@
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
-
-                @*<form class="form-inline navbar-right col-md-6">
-                        <div class="form-group ">
-                            <label class="sr-only" for="exampleInputEmail3">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <label class="sr-only" for="exampleInputPassword3">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Remember me
-                            </label>
-                        </div>
-                        <button type="submit" class="btn btn-default">Sign in</button>
-                    </form>*@
                 <p class="navbar-right">
                     <a href="@Url.Action("DangNhap","NguoiDung")" class="btn btn-success navbar-btn" role="button">Đăng nhập</a>
                     <a href="@Url.Action("DangKi","NguoiDung")" c class="btn btn-success navbar-btn" role="button">Đăng Ký</a>
                 </p>
-
-                @*
-                *@
-
+                </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
+   
     <div class="container">
         <div class="row">
             <div class="col-md-3">

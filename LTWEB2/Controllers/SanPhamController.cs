@@ -20,7 +20,7 @@ namespace LTWEB2.Controllers
             using (LTWEB2Entities ctx = new LTWEB2Entities())
             {
                 List<SanPham> list = ctx.SanPham
-                    .Where(p => p.LoaiID == id).ToList();
+                    .Where(p => p.NhaSanXuatID == id).ToList();
                 return View(list);
             }
             

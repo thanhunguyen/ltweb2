@@ -7,9 +7,9 @@
 
     @foreach (NhaSanXuat c in Model)
     {
-        <a class="list-group-item">
+        <a href="@Url.Action("BySP","SanPham",new {id=c.NhaSanXuatID })" class="list-group-item">
             @c.TenNhaSanXuat
-           
+
         </a>
     }
 </div>
