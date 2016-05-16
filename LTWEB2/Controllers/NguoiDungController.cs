@@ -5,6 +5,7 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web.Mvc;
 
+
 namespace LTWEB2.Controllers
 {
     public class NguoiDungController : Controller
