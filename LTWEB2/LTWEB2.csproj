@@ -229,6 +229,7 @@
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="obj\Debug\LTWEB2.csprojResolveAssemblyReference.cache" />
+    <Content Include="Web.config" />
     <EntityDeploy Include="Models\LTWEB2.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>LTWEB2.Designer.cs</LastGenOutput>
@@ -253,7 +254,12 @@
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />

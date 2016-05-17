@@ -10,7 +10,7 @@ namespace LTWEB2.Controllers
     public class SanPhamController : Controller
     {
         // GET: SanPham/BySP
-        public ActionResult BySP(int ? id)
+        public ActionResult BySP(int ? id, int curPage=1)
         {
             
                 if (id.HasValue == false)
@@ -19,8 +19,25 @@ namespace LTWEB2.Controllers
                 }
             using (LTWEB2Entities ctx = new LTWEB2Entities())
             {
-                List<SanPham> list = ctx.SanPham
-                    .Where(p => p.NhaSanXuatID == id).ToList();
+                // List<SanPham> list = ctx.SanPham
+                //   .Where(p => p.NhaSanXuatID == id).ToList();
+
+                var query = ctx.SanPham.Where(p => p.NhaSanXuatID == id);
+
+                int n = query.Count();
+
+                int nPages = n / 4;
+                if (n % 4 > 0) nPages++;
+                ViewBag.Pages = nPages;
+                ViewBag.NextPage = curPage + 1;
+                ViewBag.PrevPage = curPage - 1;
+
+
+                int nSkip = (curPage - 1) * 4;
+                List<SanPham> list = query
+                    .OrderBy(p=>p.SanPhamID)
+                    .Skip(nSkip).Take(4).ToList();
+
                 return View(list);
             }
             
