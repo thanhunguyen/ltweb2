@@ -30,15 +30,28 @@ namespace LTWEB2.Controllers
                     ViewBag.Error = "Sai tên đăng nhập hoặc mật khẩu";
                     return View(model);
                 }
-                else
-                {
+                else // login thanh cong
+                { 
                     Session["IsLogin"] = 1;
                     Session["CurUser"] = us;
+                    if (model.Remember==true)
+                    {
+                        Response.Cookies["tendangnhap"].Value = us.TenDangNhap;
+                        Response.Cookies["tendangnhap"].Expires = DateTime.Now.AddMonths(12);
+                    }
                     return RedirectToAction("Index", "Home");
                 }
             }
       
         }
+
+
+        public ActionResult DangXuat()
+        {
+            CurrentContext.Destroy();
+            return RedirectToAction("Index","Home");
+        }
+
         // GET: NguoiDung // Dang ki
         public ActionResult DangKi()
         {

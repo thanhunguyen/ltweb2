@@ -34,21 +34,25 @@
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
-                    @if ((int)Session["IsLogin"] == 1)
+                    @if (LTWEB2.Helpers.CurrentContext.IsLogged() == true)
                     {
                         <li>
                             <a href="#">Giỏ hàng <span class="badge">42</span></a>
                         </li>
                         <li>
-                            <a href="@Url.Action("DangKi", "NguoiDung")">Thoát</a>
-                        </li>}
-                    else
+                            <a href="@Url.Action("DangXuat", "NguoiDung")">@LTWEB2.Helpers.CurrentContext.CurUser().TenDayDu</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("DangXuat", "NguoiDung")">Thoát</a>
+                        </li>
+                    }
+                    else if(LTWEB2.Helpers.CurrentContext.IsLogged() == false)
                     {
                         <a href="@Url.Action("DangNhap","NguoiDung")" class="btn btn-success navbar-btn" role="button">Đăng nhập</a>
                         <a href="@Url.Action("DangKi","NguoiDung")" class="btn btn-success navbar-btn" role="button">Đăng Ký</a>
                     }
                 </ul>
-                
+
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
