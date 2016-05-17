@@ -3,6 +3,50 @@
 @section view_title{
     Đăng nhập
 }
+
+
+@section js {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script type="text/javascript">
+    $('#dangki').validate({
+        rules: {
+            UID: {
+                required: true,
+                minlength: 5,
+            },
+            PWD: {
+                required: true,
+                minlength: 8,
+            },
+
+        },
+
+        messages: {
+            UID: {
+                required: "Chưa nhập tên đăng nhập",
+                minlength: jQuery.validator.format("Vui lòng nhập tối thiểu {0} kí tự")
+            },
+            PWD: {
+                required: "Chưa nhập mật khẩu",
+                minlength: jQuery.validator.format("Vui lòng nhập tối thiểu {0} kí tự")
+            },
+        },
+
+            errorElement: 'span', //default input error message container
+            errorClass: 'help-block',//default input error message class
+
+            highlight: function (element) {
+                $(element).closest('.form-group').addClass('has-error');
+
+            },
+
+            success: function (label) {
+                label.closest('.form-group').removeClass('has-error');
+            }
+        
+    });
+    </script>
+}
 @if (ViewBag.Error != null)
 {
 
@@ -16,7 +60,7 @@
 
 }
 
-<form class='form-horizontal' method='post'>
+<form class='form-horizontal' id='dangki' method='post'>
     <div  class='form-group'>
         <label for='username' class='col-sm-3 control-label'>Tên đăng nhập</label>
         <div class='col-sm-6'>
@@ -41,7 +85,7 @@
 
     <div class='form-group'>
         <div class='col-sm-offset-3 col-sm-3'>
-            <button class='btn btn-success' type='submit' id='submit'><i class="fa fa-check"></i> Signup </button>
+            <button class='btn btn-success' type='submit' id='submit'><i class="fa fa-check"></i> Đăng nhập </button>
         </div>
     </div>
 </form>

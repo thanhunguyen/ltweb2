@@ -5,6 +5,9 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web.Mvc;
 using BotDetect.Web.Mvc;
+using LTWEB2.Filters;
+
+using System.Web;
 
 namespace LTWEB2.Controllers
 {
@@ -25,16 +28,16 @@ namespace LTWEB2.Controllers
                 NguoiDung us = ctx.NguoiDung
                     .Where(u => u.TenDangNhap == model.UID && u.MatKhau == passw)
                     .FirstOrDefault();
-                if(us==null)
+                if (us == null)
                 {
                     ViewBag.Error = "Sai tên đăng nhập hoặc mật khẩu";
                     return View(model);
                 }
                 else // login thanh cong
-                { 
+                {
                     Session["IsLogin"] = 1;
                     Session["CurUser"] = us;
-                    if (model.Remember==true)
+                    if (model.Remember == true)
                     {
                         Response.Cookies["tendangnhap"].Value = us.TenDangNhap;
                         Response.Cookies["tendangnhap"].Expires = DateTime.Now.AddMonths(12);
@@ -42,14 +45,14 @@ namespace LTWEB2.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
-      
+
         }
 
 
         public ActionResult DangXuat()
         {
             CurrentContext.Destroy();
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: NguoiDung // Dang ki
@@ -119,6 +122,15 @@ namespace LTWEB2.Controllers
             ViewBag.Error = 1;
             return View();
         }
-       
+
+
+        //get thong tin dang nhap
+        [CheckLogin]
+        public ActionResult Profile()
+        { 
+
+            return View();
+        }
+
     }
 }

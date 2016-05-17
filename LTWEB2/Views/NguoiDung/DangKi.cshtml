@@ -4,29 +4,107 @@
 @section css {
     <link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl"
           rel="stylesheet" type="text/css" />
+
 }
 @section view_title{
     Đăng kí thành viên
 }
+
+@section js {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script type="text/javascript">
+        $('#dangki').validate({
+            rules: {
+                UID: {
+                    required: true,
+                    minlength: 5,
+                },
+                PWD: {
+                    required: true,
+                    minlength: 8,
+                },
+                repeatpassword: {
+                    required: true,
+                    equalTo: $("[name = 'PWD']")
+                },
+                FullName: {
+                    required: true,
+                    minlength: 5,
+                },
+                Email: {
+                    required: true,
+                    email: true,
+                },
+                CaptchaCode: {
+                    required: true,
+                }
+
+
+
+            },
+
+            messages: {
+                UID: {
+                    required: "Chưa nhập tên đăng nhập",
+                    minlength: jQuery.validator.format("Vui lòng nhập tối thiểu {0} kí tự")
+                },
+                PWD: {
+                    required: "Chưa nhập mật khẩu",
+                    minlength: jQuery.validator.format("Vui lòng nhập tối thiểu {0} kí tự")
+                },
+                repeatpassword: {
+                    required: "Chưa nhập lại mật khẩu",
+                    equalTo: "Mật khẩu nhập lại không khớp"
+                },
+                FullName: {
+                    required: "Chưa nhập tên đầy đủ",
+                    minlength: jQuery.validator.format("Vui lòng nhập tối thiểu {0} kí tự")
+                },
+                Email: {
+                    required: "Chưa nhập email",
+                    email: "Email chưa đúng định dạng email@email.com"
+                },
+                CaptchaCode: {
+                    required: "Chưa nhập mã xác nhận"
+                },
+            },
+
+            errorElement: 'span', //default input error message container
+            errorClass: 'help-block',//default input error message class
+
+            highlight: function (element) {
+                $(element).closest('.form-group').addClass('has-error');
+
+            },
+
+            success: function (label) {
+                label.closest('.form-group').removeClass('has-error');
+            }
+        });
+    </script>
+}
+
+
 @if (ViewBag.Error != null)
 {
-    
-        <div class="alert alert-dismissible
+
+
+    <div class="alert alert-dismissible
               @if (ViewBag.Error == 0 || ViewBag.Error == 2) {<text>alert-warning</text>}
               @if (ViewBag.Error == 1) {<text>alert-success</text>}
               " role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            @if (ViewBag.Error == 0)
-            {<text>Lỗi, @Model.UID đã tồn tại</text>}
-            @if (ViewBag.Error == 1)
-            {<text>Đăng kí thành công, bạn đã có thể đăng nhập bằng tài khoản vừa tạo</text>}
-            @if (ViewBag.Error == 2)
-            {<text>Lỗi, mã xác nhận vừa nhập không khớp với hình</text>}
-        </div>
-  
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        @if (ViewBag.Error == 0)
+        {<text>Lỗi, @Model.UID đã tồn tại</text>}
+        @if (ViewBag.Error == 1)
+        {<text>Đăng kí thành công, bạn đã có thể đăng nhập bằng tài khoản vừa tạo</text>}
+        @if (ViewBag.Error == 2)
+        {<text>Lỗi, mã xác nhận vừa nhập không khớp với hình</text>}
+    </div>
+
 }
 
-<form class='form-horizontal' method='post'>
+<form class='form-horizontal' id='dangki' method='post'>
     <div id='nut' class='form-group'>
         <label for='username' class='col-sm-3 control-label'>Tên đăng nhập</label>
         <div class='col-sm-6'>
@@ -87,7 +165,7 @@
 
     <div class='form-group'>
         <div class='col-sm-offset-9 col-sm-3'>
-            <button class='btn btn-success' type='submit' id='submit'><i class="fa fa-check"></i> Signup </button>
+            <button class='btn btn-success' type='submit' id='submit'><i class="fa fa-check"></i> Đăng kí </button>
         </div>
     </div>
 </form>
