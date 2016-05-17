@@ -20,46 +20,82 @@
         }
     </style>
 }
-<div class="row">
+
     @if (Model.Count == 0)
     {
-        <div class="col-md-12">
-            Không có sản phẩm
+        <div class="row">
+            <div class="col-md-12">
+                Không có sản phẩm
+            </div>
         </div>
+
     }
     else
     {
-        foreach (SanPham c in Model)
-        {
-            <div class="col-sm-6 col-md-6">
-                <div class="thumbnail">
-                    <img src="..." alt="...">
-                    <br />
-                    <br />
-                    <span class="caption-lg-orange">@c.TenSanPham</span><br />
-                    <br />
-                    <span class="caption-lg-red">Giá bán: @string.Format("{0:N0}", c.GiaBan)</span><br />
-                    Số lượng: @c.SoLuongTon<br />
-                    Số lượt xem: @c.SoLuotXem<br />
-                    Số lượt bán: @c.SoLuotBan<br />
-                    Xuất sứ: @c.XuatXu<br />
-                    <br />
-                    <p>
-                        <a href="#" class="btn btn-primary" role="button">
-                            <i class="fa fa-list-ul"></i>
-                            Chi Tiết
-                        </a>
-                        <a href="#" class="btn btn-success" role="button">
-                            <i class="fa fa-cart-plus"></i>
-                            Dặt hàng
-                        </a>
-                    </p>
+        <div class="row">
+            @foreach (SanPham c in Model)
+            {
+                <div class="col-sm-6 col-md-6">
+                    <div class="thumbnail">
+                        <img src="..." alt="...">
+                        <br />
+                        <br />
+                        <span class="caption-lg-orange">@c.TenSanPham</span><br />
+                        <br />
+                        <span class="caption-lg-red">Giá bán: @string.Format("{0:N0}", c.GiaBan)</span><br />
+                        Số lượng: @c.SoLuongTon<br />
+                        Số lượt xem: @c.SoLuotXem<br />
+                        Số lượt bán: @c.SoLuotBan<br />
+                        Xuất sứ: @c.XuatXu<br />
+                        <br />
+                        <p>
+                            <a href="#" class="btn btn-primary" role="button">
+                                <i class="fa fa-list-ul"></i>
+                                Chi Tiết
+                            </a>
+                            <a href="#" class="btn btn-success" role="button">
+                                <i class="fa fa-cart-plus"></i>
+                                Dặt hàng
+                            </a>
+                        </p>
 
+                    </div>
                 </div>
-            </div>
 
-        }
+            }
+
+        </div>
     }
+        <div class="row">
+            <div class="col-md-12">
+                <nav>
+                    <ul class="pagination ">
+                        <li>
+                        <a href="?curPage=@ViewBag.PrevPage" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+                        </li>
+                        @for (int i = 1; i <= ViewBag.Pages; i++)
+                        {
+
+                            <li @if (i==ViewBag.CurPage) { <text> class="active" </text> } >
+                                 <a href="?curPage=@i">@i</a>
+                            </li>
+                        }
+                        <li>
+                        <a href="?curPage=@ViewBag.NextPage" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+                        </li>
+                     
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    
 
 
-</div>
+            
+
+
+
+
+        
+
+
