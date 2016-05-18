@@ -174,10 +174,11 @@
       <DependentUpon>LTWEB2.edmx</DependentUpon>
       <LastGenOutput>LTWEB2.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\LTWEB2.edmx.sql" />
     <Content Include="Models\LTWEB2.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>LTWEB2.cs</LastGenOutput>
       <DependentUpon>LTWEB2.edmx</DependentUpon>
+      <LastGenOutput>LTWEB2.cs</LastGenOutput>
     </Content>
     <Content Include="obj\Debug\LTWEB2.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\LTWEB2.dll" />
@@ -230,13 +231,6 @@
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="obj\Debug\LTWEB2.csprojResolveAssemblyReference.cache" />
     <Content Include="Web.config" />
-    <EntityDeploy Include="Models\LTWEB2.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LTWEB2.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\LTWEB2.edmx.diagram">
-      <DependentUpon>LTWEB2.edmx</DependentUpon>
-    </Content>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -247,6 +241,13 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\LTWEB2.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LTWEB2.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\LTWEB2.edmx.diagram">
+      <DependentUpon>LTWEB2.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
     <Content Include="Scripts\jquery-2.2.3.min.js" />
@@ -254,6 +255,13 @@
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Views\NguoiDungs\Create.cshtml" />
+    <Content Include="Views\NguoiDungs\Delete.cshtml" />
+    <Content Include="Views\NguoiDungs\Details.cshtml" />
+    <Content Include="Views\NguoiDungs\Edit.cshtml" />
+    <Content Include="Views\NguoiDungs\Index.cshtml" />
+    <Content Include="Views\NguoiDung\Edit.cshtml" />
+    <Content Include="Views\NguoiDung\ChangePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -266,6 +274,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoaiController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
+    <Compile Include="Controllers\NguoiDungsController.cs" />
     <Compile Include="Controllers\NhaSanXuatController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
     <Compile Include="Filters\CheckLoginAttribute.cs" />
@@ -274,6 +283,7 @@
     </Compile>
     <Compile Include="Helpers\CurrentContext.cs" />
     <Compile Include="Helpers\StringUtils.cs" />
+    <Compile Include="Models\ChangePassword.cs" />
     <Compile Include="Models\ChiTietGioHang.cs">
       <DependentUpon>LTWEB2.tt</DependentUpon>
     </Compile>
@@ -337,6 +347,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

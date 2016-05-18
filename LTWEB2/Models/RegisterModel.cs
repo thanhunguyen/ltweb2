@@ -9,6 +9,7 @@ namespace LTWEB2.Models
     {
         public string UID { get; set; }
         public string PWD { get; set; }
+        public int SDT { get; set; }
         public string FullName { get; set; }
         public string Email { get; set; }
 

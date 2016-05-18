@@ -39,12 +39,25 @@
                         <li>
                             <a href="#">Giỏ hàng <span class="badge">42</span></a>
                         </li>
+                        
                         <li>
-                            <a href="@Url.Action("Profile", "NguoiDung")">@LTWEB2.Helpers.CurrentContext.CurUser().TenDayDu</a>
+                            <div class="dropdown">
+                                <button class="btn btn-success navbar-btn dropdown-toggle" type="button" data-toggle="dropdown">
+                                    @LTWEB2.Helpers.CurrentContext.CurUser().TenDayDu
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="@Url.Action("Profile", "NguoiDung")">Xem thông tin</a></li>
+                                    <li><a href="@Url.Action("Edit", "NguoiDung")">Sửa thông tin</a></li>
+                                    <li><a href="@Url.Action("ChangePassword", "NguoiDung")">Đổi mật khẩu</a></li>
+                                    <li><a href="@Url.Action("DangXuat", "NguoiDung")">Đăng xuất</a></li>
+                                </ul>
+                            </div>
+                             @*<a href="@Url.Action("Profile", "NguoiDung")">@LTWEB2.Helpers.CurrentContext.CurUser().TenDayDu</a>*@
                         </li>
-                        <li>
+                        @*<li>
                             <a href="@Url.Action("DangXuat", "NguoiDung")">Thoát</a>
-                        </li>
+                        </li>*@
                     }
                     else if(LTWEB2.Helpers.CurrentContext.IsLogged() == false)
                     {

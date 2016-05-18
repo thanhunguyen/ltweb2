@@ -1,0 +1,164 @@
+﻿
+@section view_title{
+    Sửa thông tin người dùng
+}
+@section js {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script type="text/javascript">
+        $('#dangki').validate({
+            rules: {
+                SDT: {
+                    digits: true,
+                    required: true,
+                    minlength: 10,
+                },
+                PWD: {
+                    required: true,
+                    minlength: 8,
+                },
+
+                FullName: {
+                    required: true,
+                    minlength: 5,
+                },
+                Email: {
+                    required: true,
+                    email: true,
+                }
+
+
+            },
+
+            messages: {
+                SDT: {
+                    digits: "Chỉ được nhập số",
+                    required: "Chưa nhập số điện thoại",
+                    minlength: jQuery.validator.format("Vui lòng nhập tối thiểu {0} kí tự")
+                },
+                PWD: {
+                    required: "Chưa nhập mật khẩu",
+                    minlength: jQuery.validator.format("Vui lòng nhập tối thiểu {0} kí tự")
+                },
+                FullName: {
+                    required: "Chưa nhập tên đầy đủ",
+                    minlength: jQuery.validator.format("Vui lòng nhập tối thiểu {0} kí tự")
+                },
+                Email: {
+                    required: "Chưa nhập email",
+                    email: "Email chưa đúng định dạng email@email.com"
+                },
+            },
+
+            errorElement: 'span', //default input error message container
+            errorClass: 'help-block',//default input error message class
+
+            highlight: function (element) {
+                $(element).closest('.form-group').addClass('has-error');
+
+            },
+
+            success: function (label) {
+                label.closest('.form-group').removeClass('has-error');
+            }
+        });
+    </script>
+}
+
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-dismissible
+              @if (ViewBag.Error == 13 || ViewBag.FullName == 0||ViewBag.Email==0||ViewBag.SoDienThoai==0) {<text>alert-warning</text>}
+                  else {<text>hidden</text> }
+                  " role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        @if (ViewBag.Error == 13)
+        {<text>Sai mật khẩu xác nhận</text>}
+        @if (ViewBag.FullName == 0 && ViewBag.Email == 0 && ViewBag.SoDienThoai == 0)
+        {<text>Không có trường nào được cập nhật do dữ liệu vừa nhập trùng với dữ liệu cũ</text>}
+        else if (ViewBag.FullName == 0 || ViewBag.Email == 0 || ViewBag.SoDienThoai == 0)
+        {
+            if (ViewBag.FullName == 0 || ViewBag.Email == 0 || ViewBag.SoDienThoai == 0)
+            {<text>Các trường </text>}
+            if (ViewBag.FullName == 0)
+            {<text><strong>Tên đầy đủ</strong></text>}
+            if (ViewBag.Email == 0)
+            {<text><strong> Email</strong></text>}
+            if (ViewBag.SoDienThoai == 0)
+            {<text><strong> Số điện thoại</strong></text>}
+            if (ViewBag.FullName == 0 || ViewBag.Email == 0 || ViewBag.SoDienThoai == 0)
+            {<text> không được thay đổi do dữ liệu nhập trùng với dữ liệu cũ.</text>}
+        }
+    </div>
+
+    <div class="alert alert-dismissible
+              @if (ViewBag.Error == 1||ViewBag.FullName == 1||ViewBag.Email==1||ViewBag.SoDienThoai==1) {<text>alert-success</text>}
+                  else {<text>hidden</text>}
+                  " role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        @if (ViewBag.Error == 1 || ViewBag.FullName == 1 || ViewBag.Email == 1 || ViewBag.SoDienThoai == 1)
+        {<text>Các trường </text>}
+        @if (ViewBag.FullName == 1)
+        {<text><strong>Tên đầy đủ</strong></text>}
+        @if (ViewBag.Email == 1)
+        {<text><strong> Email</strong></text>}
+        @if (ViewBag.SoDienThoai == 1)
+        {<text><strong> Số điện thoại</strong></text>}
+        @if (ViewBag.Error == 1 || ViewBag.FullName == 1 || ViewBag.Email == 1 || ViewBag.SoDienThoai == 1)
+        {<text>đã được cập nhật thành công.</text>}
+    </div>
+
+}
+
+
+<form class='form-horizontal' id='dangki' method='post'>
+    @if (ViewBag.FormToken != null)
+    {
+        <text><input name="__RequestVerificationToken" type="hidden" value="@ViewBag.FormToken" /></text>
+    }
+    else
+    {
+        <text>@Html.AntiForgeryToken()</text>
+    }
+    <div id='nut' class='form-group'>
+        <label for='username' class='col-sm-3 control-label hidden'>Tên đăng nhập</label>
+        <div class='col-sm-6'>
+            <input name='UID' type='text' class='form-control hidden' id='username' value='@LTWEB2.Helpers.CurrentContext.CurUser().TenDangNhap'>
+        </div>
+    </div>
+
+    <div id='nut' class='form-group'>
+        <label for='username' class='col-sm-3 control-label'>Số điện thoại</label>
+        <div class='col-sm-6'>
+            <input name='SDT' type='text' class='form-control' id='username' placeholder='Số điện thoại' value='@LTWEB2.Helpers.CurrentContext.CurUser().SoDienThoai'>
+        </div>
+    </div>
+
+    <div id='nut' class='form-group'>
+        <label for='fullname' class='col-sm-3 control-label'>Tên đầy đủ</label>
+        <div class='col-sm-6'>
+            <input name='FullName' type='text' class='form-control' id='fullname' placeholder='Tên đầy đủ' value='@LTWEB2.Helpers.CurrentContext.CurUser().TenDayDu'>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
+        <div class="col-sm-6">
+            <input name="Email" type="email" class="form-control" id="inputEmail3" placeholder="email@email.com" value='@LTWEB2.Helpers.CurrentContext.CurUser().Email'>
+        </div>
+    </div>
+
+    <div id='nut' class='form-group'>
+        <label for='username' class='col-sm-3 control-label'>Nhập mật khẩu để xác nhận</label>
+        <div class='col-sm-6'>
+            <input name='PWD' type='password' class='form-control' id='username'>
+        </div>
+
+        <div class='form-group'>
+            <div class='col-sm-offset-9 col-sm-3'>
+                <button class='btn btn-success' type='submit' id='submit'><i class="fa fa-check"></i> Xác nhận thay đổi </button>
+            </div>
+        </div>
+
+    </div>
+</form>
