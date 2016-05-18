@@ -8,6 +8,8 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web.Mvc;
 
+using System.Web;
+
 namespace LTWEB2.Controllers
 {
     public class NguoiDungController : Controller

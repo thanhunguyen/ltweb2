@@ -36,8 +36,9 @@
             @foreach (SanPham c in Model)
             {
                 <div class="col-sm-6 col-md-6">
-                    <div class="thumbnail">
-                        <img src="..." alt="...">
+                    <div class="thumbnail ">               
+                            <img style="width:242px;height:300px" src="~/Hinh/SP/@c.SanPhamID/main_hinh.jpg" alt="@c.TenSanPham" title="@c.TenSanPham">
+                       
                         <br />
                         <br />
                         <span class="caption-lg-orange">@c.TenSanPham</span><br />
@@ -65,7 +66,7 @@
             }
 
         </div>
-    }
+    
         <div class="row">
             <div class="col-md-12">
                 <nav>
@@ -89,7 +90,7 @@
             </div>
         </div>
     
-
+}
 
             
 
