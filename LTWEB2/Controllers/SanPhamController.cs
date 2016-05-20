@@ -40,7 +40,24 @@ namespace LTWEB2.Controllers
 
                 return View(list);
             }
-            
+           
+        }
+
+        public ActionResult Detail(int ? id)
+        {
+            if (id.HasValue == false)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            using (LTWEB2Entities ctx=new LTWEB2Entities())
+            {
+                var model = ctx.SanPham
+                    .Where(p => p.SanPhamID == id)
+                    .FirstOrDefault();
+                return View(model);
+            }
         }
     }
+
+
 }

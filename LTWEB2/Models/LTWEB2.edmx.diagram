@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ff773213ee99462991b08a3200ed00e3" Name="Diagram1">
+      <Diagram DiagramId="e3ec6e300c0c4bc580b90dc1ace51191" Name="Diagram1">
         <EntityTypeShape EntityType="LTWEB2Model.ChiTietGioHang" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="LTWEB2Model.GioHang" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LTWEB2Model.Loai" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
