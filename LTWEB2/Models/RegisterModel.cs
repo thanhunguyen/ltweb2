@@ -12,6 +12,5 @@ namespace LTWEB2.Models
         public int SDT { get; set; }
         public string FullName { get; set; }
         public string Email { get; set; }
-
     }
 }
