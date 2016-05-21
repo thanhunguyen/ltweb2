@@ -4,157 +4,156 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LTWEB2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="ChiTietGioHang">
-          <Key>
-            <PropertyRef Name="GioHangID" />
-            <PropertyRef Name="SanPhamID" />
-          </Key>
-          <Property Name="GioHangID" Type="int" Nullable="false" />
-          <Property Name="SanPhamID" Type="int" Nullable="false" />
-          <Property Name="SoLuong" Type="int" />
-        </EntityType>
-        <EntityType Name="GioHang">
-          <Key>
-            <PropertyRef Name="GioHangID" />
-          </Key>
-          <Property Name="GioHangID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NguoiDungID" Type="int" />
-          <Property Name="NgayMua" Type="datetime" />
-          <Property Name="Gia" Type="float" />
-        </EntityType>
-        <EntityType Name="Loai">
-          <Key>
-            <PropertyRef Name="LoaiID" />
-          </Key>
-          <Property Name="LoaiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenLoai" Type="nvarchar" MaxLength="40" />
-        </EntityType>
-        <EntityType Name="NguoiDung">
-          <Key>
-            <PropertyRef Name="NguoiDungID" />
-          </Key>
-          <Property Name="NguoiDungID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenDayDu" Type="nvarchar" MaxLength="40" />
-          <Property Name="TenDangNhap" Type="nvarchar" MaxLength="30" />
-          <Property Name="MatKhau" Type="nvarchar" MaxLength="100" />
-          <Property Name="Email" Type="nvarchar" MaxLength="30" />
-          <Property Name="SoDienThoai" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="QuyenHan" Type="int" />
-        </EntityType>
-        <EntityType Name="NhaSanXuat">
-          <Key>
-            <PropertyRef Name="NhaSanXuatID" />
-          </Key>
-          <Property Name="NhaSanXuatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenNhaSanXuat" Type="nvarchar" MaxLength="40" />
-        </EntityType>
-        <EntityType Name="SanPham">
-          <Key>
-            <PropertyRef Name="SanPhamID" />
-          </Key>
-          <Property Name="SanPhamID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenSanPham" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="GiaBan" Type="float" />
-          <Property Name="SoLuotXem" Type="int" />
-          <Property Name="SoLuotBan" Type="int" />
-          <Property Name="SoLuongTon" Type="int" />
-          <Property Name="MoTa" Type="nvarchar" MaxLength="1000" />
-          <Property Name="XuatXu" Type="nvarchar" MaxLength="30" />
-          <Property Name="LoaiID" Type="int" />
-          <Property Name="NhaSanXuatID" Type="int" />
-          <Property Name="NgayTiepNhan" Type="datetime" />
-        </EntityType>
-        <Association Name="FK_CTGioHang_GioHang">
-          <End Role="GioHang" Type="Self.GioHang" Multiplicity="1" />
-          <End Role="ChiTietGioHang" Type="Self.ChiTietGioHang" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GioHang">
-              <PropertyRef Name="GioHangID" />
-            </Principal>
-            <Dependent Role="ChiTietGioHang">
-              <PropertyRef Name="GioHangID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CTGioHang_SanPham">
-          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
-          <End Role="ChiTietGioHang" Type="Self.ChiTietGioHang" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SanPham">
-              <PropertyRef Name="SanPhamID" />
-            </Principal>
-            <Dependent Role="ChiTietGioHang">
-              <PropertyRef Name="SanPhamID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GioHang_NguoiDung">
-          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1" />
-          <End Role="GioHang" Type="Self.GioHang" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NguoiDung">
-              <PropertyRef Name="NguoiDungID" />
-            </Principal>
-            <Dependent Role="GioHang">
-              <PropertyRef Name="NguoiDungID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SanPham_Loai">
-          <End Role="Loai" Type="Self.Loai" Multiplicity="0..1" />
-          <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Loai">
-              <PropertyRef Name="LoaiID" />
-            </Principal>
-            <Dependent Role="SanPham">
-              <PropertyRef Name="LoaiID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SanPham_NhaSanXuat">
-          <End Role="NhaSanXuat" Type="Self.NhaSanXuat" Multiplicity="0..1" />
-          <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NhaSanXuat">
-              <PropertyRef Name="NhaSanXuatID" />
-            </Principal>
-            <Dependent Role="SanPham">
-              <PropertyRef Name="NhaSanXuatID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="LTWEB2ModelStoreContainer">
-          <EntitySet Name="ChiTietGioHang" EntityType="Self.ChiTietGioHang" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="GioHang" EntityType="Self.GioHang" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Loai" EntityType="Self.Loai" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="NguoiDung" EntityType="Self.NguoiDung" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="NhaSanXuat" EntityType="Self.NhaSanXuat" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_CTGioHang_GioHang" Association="Self.FK_CTGioHang_GioHang">
-            <End Role="GioHang" EntitySet="GioHang" />
-            <End Role="ChiTietGioHang" EntitySet="ChiTietGioHang" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CTGioHang_SanPham" Association="Self.FK_CTGioHang_SanPham">
-            <End Role="SanPham" EntitySet="SanPham" />
-            <End Role="ChiTietGioHang" EntitySet="ChiTietGioHang" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GioHang_NguoiDung" Association="Self.FK_GioHang_NguoiDung">
-            <End Role="NguoiDung" EntitySet="NguoiDung" />
-            <End Role="GioHang" EntitySet="GioHang" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SanPham_Loai" Association="Self.FK_SanPham_Loai">
-            <End Role="Loai" EntitySet="Loai" />
-            <End Role="SanPham" EntitySet="SanPham" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SanPham_NhaSanXuat" Association="Self.FK_SanPham_NhaSanXuat">
-            <End Role="NhaSanXuat" EntitySet="NhaSanXuat" />
-            <End Role="SanPham" EntitySet="SanPham" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="LTWEB2Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="LTWEB2ModelStoreContainer">
+    <EntitySet Name="ChiTietGioHang" EntityType="LTWEB2Model.Store.ChiTietGioHang" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GioHang" EntityType="LTWEB2Model.Store.GioHang" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Loai" EntityType="LTWEB2Model.Store.Loai" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NguoiDung" EntityType="LTWEB2Model.Store.NguoiDung" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NhaSanXuat" EntityType="LTWEB2Model.Store.NhaSanXuat" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SanPham" EntityType="LTWEB2Model.Store.SanPham" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_CTGioHang_GioHang" Association="LTWEB2Model.Store.FK_CTGioHang_GioHang">
+      <End Role="GioHang" EntitySet="GioHang" />
+      <End Role="ChiTietGioHang" EntitySet="ChiTietGioHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CTGioHang_SanPham" Association="LTWEB2Model.Store.FK_CTGioHang_SanPham">
+      <End Role="SanPham" EntitySet="SanPham" />
+      <End Role="ChiTietGioHang" EntitySet="ChiTietGioHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GioHang_NguoiDung" Association="LTWEB2Model.Store.FK_GioHang_NguoiDung">
+      <End Role="NguoiDung" EntitySet="NguoiDung" />
+      <End Role="GioHang" EntitySet="GioHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPham_Loai" Association="LTWEB2Model.Store.FK_SanPham_Loai">
+      <End Role="Loai" EntitySet="Loai" />
+      <End Role="SanPham" EntitySet="SanPham" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPham_NhaSanXuat" Association="LTWEB2Model.Store.FK_SanPham_NhaSanXuat">
+      <End Role="NhaSanXuat" EntitySet="NhaSanXuat" />
+      <End Role="SanPham" EntitySet="SanPham" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ChiTietGioHang">
+    <Key>
+      <PropertyRef Name="GioHangID" />
+      <PropertyRef Name="SanPhamID" />
+    </Key>
+    <Property Name="GioHangID" Type="int" Nullable="false" />
+    <Property Name="SanPhamID" Type="int" Nullable="false" />
+    <Property Name="SoLuong" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="GioHang">
+    <Key>
+      <PropertyRef Name="GioHangID" />
+    </Key>
+    <Property Name="GioHangID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NguoiDungID" Type="int" Nullable="true" />
+    <Property Name="NgayMua" Type="datetime" Nullable="true" />
+    <Property Name="Gia" Type="float" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Loai">
+    <Key>
+      <PropertyRef Name="LoaiID" />
+    </Key>
+    <Property Name="LoaiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenLoai" Type="nvarchar" Nullable="true" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="NguoiDung">
+    <Key>
+      <PropertyRef Name="NguoiDungID" />
+    </Key>
+    <Property Name="NguoiDungID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenDayDu" Type="nvarchar" Nullable="true" MaxLength="40" />
+    <Property Name="TenDangNhap" Type="nvarchar" Nullable="true" MaxLength="30" />
+    <Property Name="MatKhau" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="Email" Type="nvarchar" Nullable="true" MaxLength="30" />
+    <Property Name="SoDienThoai" Type="int" Nullable="true" />
+    <Property Name="QuyenHan" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="NhaSanXuat">
+    <Key>
+      <PropertyRef Name="NhaSanXuatID" />
+    </Key>
+    <Property Name="NhaSanXuatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenNhaSanXuat" Type="nvarchar" Nullable="true" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="SanPham">
+    <Key>
+      <PropertyRef Name="SanPhamID" />
+    </Key>
+    <Property Name="SanPhamID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenSanPham" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="GiaBan" Type="float" Nullable="true" />
+    <Property Name="SoLuotXem" Type="int" Nullable="true" />
+    <Property Name="SoLuotBan" Type="int" Nullable="true" />
+    <Property Name="SoLuongTon" Type="int" Nullable="true" />
+    <Property Name="MoTa" Type="nvarchar" Nullable="true" MaxLength="1000" />
+    <Property Name="XuatXu" Type="nvarchar" Nullable="true" MaxLength="30" />
+    <Property Name="LoaiID" Type="int" Nullable="true" />
+    <Property Name="NhaSanXuatID" Type="int" Nullable="true" />
+    <Property Name="NgayTiepNhan" Type="datetime" Nullable="true" />
+  </EntityType>
+  <Association Name="FK_CTGioHang_GioHang">
+    <End Role="GioHang" Type="LTWEB2Model.Store.GioHang" Multiplicity="1" />
+    <End Role="ChiTietGioHang" Type="LTWEB2Model.Store.ChiTietGioHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GioHang">
+        <PropertyRef Name="GioHangID" />
+      </Principal>
+      <Dependent Role="ChiTietGioHang">
+        <PropertyRef Name="GioHangID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CTGioHang_SanPham">
+    <End Role="SanPham" Type="LTWEB2Model.Store.SanPham" Multiplicity="1" />
+    <End Role="ChiTietGioHang" Type="LTWEB2Model.Store.ChiTietGioHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="SanPhamID" />
+      </Principal>
+      <Dependent Role="ChiTietGioHang">
+        <PropertyRef Name="SanPhamID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GioHang_NguoiDung">
+    <End Role="NguoiDung" Type="LTWEB2Model.Store.NguoiDung" Multiplicity="0..1" />
+    <End Role="GioHang" Type="LTWEB2Model.Store.GioHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NguoiDung">
+        <PropertyRef Name="NguoiDungID" />
+      </Principal>
+      <Dependent Role="GioHang">
+        <PropertyRef Name="NguoiDungID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPham_Loai">
+    <End Role="Loai" Type="LTWEB2Model.Store.Loai" Multiplicity="0..1" />
+    <End Role="SanPham" Type="LTWEB2Model.Store.SanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Loai">
+        <PropertyRef Name="LoaiID" />
+      </Principal>
+      <Dependent Role="SanPham">
+        <PropertyRef Name="LoaiID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPham_NhaSanXuat">
+    <End Role="NhaSanXuat" Type="LTWEB2Model.Store.NhaSanXuat" Multiplicity="0..1" />
+    <End Role="SanPham" Type="LTWEB2Model.Store.SanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhaSanXuat">
+        <PropertyRef Name="NhaSanXuatID" />
+      </Principal>
+      <Dependent Role="SanPham">
+        <PropertyRef Name="NhaSanXuatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LTWEB2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -197,7 +196,7 @@
           <Property Name="TenDangNhap" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="MatKhau" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="SoDienThoai" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SoDienThoai" Type="Int32" />
           <Property Name="QuyenHan" Type="Int32" />
           <NavigationProperty Name="GioHang" Relationship="Self.FK_GioHang_NguoiDung" FromRole="NguoiDung" ToRole="GioHang" />
         </EntityType>
@@ -320,76 +319,75 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="LTWEB2ModelStoreContainer" CdmEntityContainer="LTWEB2Entities">
-          <EntitySetMapping Name="ChiTietGioHang">
-            <EntityTypeMapping TypeName="LTWEB2Model.ChiTietGioHang">
-              <MappingFragment StoreEntitySet="ChiTietGioHang">
-                <ScalarProperty Name="GioHangID" ColumnName="GioHangID" />
-                <ScalarProperty Name="SanPhamID" ColumnName="SanPhamID" />
-                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="GioHang">
-            <EntityTypeMapping TypeName="LTWEB2Model.GioHang">
-              <MappingFragment StoreEntitySet="GioHang">
-                <ScalarProperty Name="GioHangID" ColumnName="GioHangID" />
-                <ScalarProperty Name="NguoiDungID" ColumnName="NguoiDungID" />
-                <ScalarProperty Name="NgayMua" ColumnName="NgayMua" />
-                <ScalarProperty Name="Gia" ColumnName="Gia" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Loai">
-            <EntityTypeMapping TypeName="LTWEB2Model.Loai">
-              <MappingFragment StoreEntitySet="Loai">
-                <ScalarProperty Name="LoaiID" ColumnName="LoaiID" />
-                <ScalarProperty Name="TenLoai" ColumnName="TenLoai" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="NguoiDung">
-            <EntityTypeMapping TypeName="LTWEB2Model.NguoiDung">
-              <MappingFragment StoreEntitySet="NguoiDung">
-                <ScalarProperty Name="NguoiDungID" ColumnName="NguoiDungID" />
-                <ScalarProperty Name="TenDayDu" ColumnName="TenDayDu" />
-                <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
-                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
-                <ScalarProperty Name="QuyenHan" ColumnName="QuyenHan" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="NhaSanXuat">
-            <EntityTypeMapping TypeName="LTWEB2Model.NhaSanXuat">
-              <MappingFragment StoreEntitySet="NhaSanXuat">
-                <ScalarProperty Name="NhaSanXuatID" ColumnName="NhaSanXuatID" />
-                <ScalarProperty Name="TenNhaSanXuat" ColumnName="TenNhaSanXuat" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SanPham">
-            <EntityTypeMapping TypeName="LTWEB2Model.SanPham">
-              <MappingFragment StoreEntitySet="SanPham">
-                <ScalarProperty Name="SanPhamID" ColumnName="SanPhamID" />
-                <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
-                <ScalarProperty Name="GiaBan" ColumnName="GiaBan" />
-                <ScalarProperty Name="SoLuotXem" ColumnName="SoLuotXem" />
-                <ScalarProperty Name="SoLuotBan" ColumnName="SoLuotBan" />
-                <ScalarProperty Name="SoLuongTon" ColumnName="SoLuongTon" />
-                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
-                <ScalarProperty Name="XuatXu" ColumnName="XuatXu" />
-                <ScalarProperty Name="LoaiID" ColumnName="LoaiID" />
-                <ScalarProperty Name="NhaSanXuatID" ColumnName="NhaSanXuatID" />
-                <ScalarProperty Name="NgayTiepNhan" ColumnName="NgayTiepNhan" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LTWEB2ModelStoreContainer" CdmEntityContainer="LTWEB2Entities">
+    <EntitySetMapping Name="ChiTietGioHang">
+      <EntityTypeMapping TypeName="IsTypeOf(LTWEB2Model.ChiTietGioHang)">
+        <MappingFragment StoreEntitySet="ChiTietGioHang">
+          <ScalarProperty Name="GioHangID" ColumnName="GioHangID" />
+          <ScalarProperty Name="SanPhamID" ColumnName="SanPhamID" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GioHang">
+      <EntityTypeMapping TypeName="IsTypeOf(LTWEB2Model.GioHang)">
+        <MappingFragment StoreEntitySet="GioHang">
+          <ScalarProperty Name="GioHangID" ColumnName="GioHangID" />
+          <ScalarProperty Name="NguoiDungID" ColumnName="NguoiDungID" />
+          <ScalarProperty Name="NgayMua" ColumnName="NgayMua" />
+          <ScalarProperty Name="Gia" ColumnName="Gia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Loai">
+      <EntityTypeMapping TypeName="IsTypeOf(LTWEB2Model.Loai)">
+        <MappingFragment StoreEntitySet="Loai">
+          <ScalarProperty Name="LoaiID" ColumnName="LoaiID" />
+          <ScalarProperty Name="TenLoai" ColumnName="TenLoai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NguoiDung">
+      <EntityTypeMapping TypeName="IsTypeOf(LTWEB2Model.NguoiDung)">
+        <MappingFragment StoreEntitySet="NguoiDung">
+          <ScalarProperty Name="NguoiDungID" ColumnName="NguoiDungID" />
+          <ScalarProperty Name="TenDayDu" ColumnName="TenDayDu" />
+          <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
+          <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+          <ScalarProperty Name="QuyenHan" ColumnName="QuyenHan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NhaSanXuat">
+      <EntityTypeMapping TypeName="IsTypeOf(LTWEB2Model.NhaSanXuat)">
+        <MappingFragment StoreEntitySet="NhaSanXuat">
+          <ScalarProperty Name="NhaSanXuatID" ColumnName="NhaSanXuatID" />
+          <ScalarProperty Name="TenNhaSanXuat" ColumnName="TenNhaSanXuat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SanPham">
+      <EntityTypeMapping TypeName="IsTypeOf(LTWEB2Model.SanPham)">
+        <MappingFragment StoreEntitySet="SanPham">
+          <ScalarProperty Name="SanPhamID" ColumnName="SanPhamID" />
+          <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
+          <ScalarProperty Name="GiaBan" ColumnName="GiaBan" />
+          <ScalarProperty Name="SoLuotXem" ColumnName="SoLuotXem" />
+          <ScalarProperty Name="SoLuotBan" ColumnName="SoLuotBan" />
+          <ScalarProperty Name="SoLuongTon" ColumnName="SoLuongTon" />
+          <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+          <ScalarProperty Name="XuatXu" ColumnName="XuatXu" />
+          <ScalarProperty Name="LoaiID" ColumnName="LoaiID" />
+          <ScalarProperty Name="NhaSanXuatID" ColumnName="NhaSanXuatID" />
+          <ScalarProperty Name="NgayTiepNhan" ColumnName="NgayTiepNhan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -403,7 +401,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

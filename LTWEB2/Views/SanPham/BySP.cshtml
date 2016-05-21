@@ -37,7 +37,7 @@
             {
                 <div class="col-sm-6 col-md-6">
                     <div class="thumbnail ">               
-                            <img style="width:200px;height:200px" src="~/Hinh/SP/@c.SanPhamID/main_hinh.jpg" alt="@c.TenSanPham" title="@c.TenSanPham">
+                            <img style="width:242px;height:300px" src="~/Hinh/SP/@c.SanPhamID/main_hinh.jpg" alt="@c.TenSanPham" title="@c.TenSanPham">
                        
                         <br />
                         <br />
@@ -50,7 +50,7 @@
                         Xuất sứ: @c.XuatXu<br />
                         <br />
                         <p>
-                            <a href="#" class="btn btn-primary" role="button">
+                            <a href="@Url.Action("Detail","SanPham",new { id=c.SanPhamID})" class="btn btn-primary" role="button">
                                 <i class="fa fa-list-ul"></i>
                                 Chi Tiết
                             </a>
