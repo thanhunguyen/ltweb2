@@ -37,7 +37,7 @@
                     @if (LTWEB2.Helpers.CurrentContext.IsLogged() == true)
                     {
                         <li>
-                            <a href="#">Giỏ hàng <span class="badge">42</span></a>
+                            <a href="#">Giỏ hàng <span class="badge">@LTWEB2.Helpers.CurrentContext.Cart().GetTotal()</span></a>
                         </li>
                         
                         <li>

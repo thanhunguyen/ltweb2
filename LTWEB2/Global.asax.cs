@@ -16,7 +16,7 @@ namespace LTWEB2
         {
             Session["IsLogin"] = 0;
             Session["CurUser"] = null;
-            //Session["Cart"] = new Helpers.Cart();
+            Session["Cart"] = new Helpers.Cart();
         }
     }
 }

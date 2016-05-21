@@ -36,9 +36,18 @@ namespace LTWEB2.Helpers
         {
             return (NguoiDung)HttpContext.Current.Session["CurUser"];
         }
+         
+        public static Cart Cart()
+        {
+            if (HttpContext.Current.Session["Cart"] == null)
+                HttpContext.Current.Session["Cart"] = new Cart();
+
+            return (Cart)HttpContext.Current.Session["Cart"];
+        }
 
         public static void Destroy()
         {
+            Cart().Items.Clear();
             HttpContext.Current.Session["CurUser"] = null;
             HttpContext.Current.Session["IsLogin"] = 0;
 

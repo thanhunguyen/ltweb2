@@ -7,9 +7,6 @@ using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web.Mvc;
-
-using System.Web;
-
 namespace LTWEB2.Controllers
 {
     public class NguoiDungController : Controller
@@ -67,12 +64,12 @@ namespace LTWEB2.Controllers
 
         // GET: NguoiDung // Dang ki
         [HttpPost]
-        
+
         [AllowAnonymous]
         [CaptchaValidation("CaptchaCode", "ExampleCaptcha", "Incorrect CAPTCHA code!")]
         public ActionResult DangKi(RegisterModel model)
         {
-            
+
             if (!ModelState.IsValid)
             {
                 // TODO: Captcha validation failed, show error message
@@ -115,11 +112,11 @@ namespace LTWEB2.Controllers
                     {
                         foreach (var eve in e.EntityValidationErrors)
                         {
-                            Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                            System.Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
                                 eve.Entry.Entity.GetType().Name, eve.Entry.State);
                             foreach (var ve in eve.ValidationErrors)
                             {
-                                Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                                System.Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
                                     ve.PropertyName, ve.ErrorMessage);
                             }
                         }
@@ -163,44 +160,47 @@ namespace LTWEB2.Controllers
             }
             if (us != null)//  thanh cong
             {
-
-                if (us.TenDayDu != model.FullName)
-                {
-                    us.TenDayDu = model.FullName;
-                    ViewBag.FullName = 1;
-                }
-                else
-                {
-                    ViewBag.FullName = 0;
-                }
-
-                if (us.Email != model.Email)
-                {
-                    us.Email = model.Email;
-                    ViewBag.Email = 1;
-                }
-                else
-                {
-                    ViewBag.Email = 0;
-                }
-
-                if (us.SoDienThoai != model.SDT)
-                {
-                    us.SoDienThoai = model.SDT;
-                    ViewBag.SoDienThoai = 1;
-                }
-                else
-                {
-                    ViewBag.SoDienThoai = 0;
-                }
-
                 if (us.TenDayDu == model.FullName && us.SoDienThoai == model.SDT && us.Email == model.Email)
                 {
                     ViewBag.Error = 0;
-                    return View(model);
+                    return View();
                 }
                 else
                 {
+
+                    if (us.TenDayDu != model.FullName)
+                    {
+                        us.TenDayDu = model.FullName;
+                        ViewBag.FullName = 1;
+                    }
+                    else
+                    {
+                        ViewBag.FullName = 0;
+                    }
+
+                    if (us.Email != model.Email)
+                    {
+                        us.Email = model.Email;
+                        ViewBag.Email = 1;
+                    }
+                    else
+                    {
+                        ViewBag.Email = 0;
+                    }
+
+                    if (us.SoDienThoai != model.SDT)
+                    {
+                        us.SoDienThoai = model.SDT;
+                        ViewBag.SoDienThoai = 1;
+                    }
+                    else
+                    {
+                        ViewBag.SoDienThoai = 0;
+                    }
+
+
+
+
                     //3. Mark entity as modified
 
 
@@ -208,11 +208,13 @@ namespace LTWEB2.Controllers
                     {
                         using (var dbCtx = new LTWEB2Entities())
                         {
-
                             dbCtx.Entry(us).State = EntityState.Modified;
 
                             //4. call SaveChanges
                             dbCtx.SaveChanges();
+                            Session["CurUser"] = us;
+
+
                         }
 
                     }
@@ -231,9 +233,9 @@ namespace LTWEB2.Controllers
                         throw;
                     }
                     ViewBag.Error = 1;
-                    return View(us);
-                }
 
+                }
+                return View();
             }
             return View(model);
         }
@@ -303,7 +305,7 @@ namespace LTWEB2.Controllers
                     ViewBag.Error = 2;
                     return View();
                 }
-                
+
             }
 
 

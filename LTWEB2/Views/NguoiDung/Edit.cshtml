@@ -10,7 +10,8 @@
                 SDT: {
                     digits: true,
                     required: true,
-                    minlength: 10,
+                    minlength: 9,
+                    maxlength: 15
                 },
                 PWD: {
                     required: true,
@@ -33,7 +34,8 @@
                 SDT: {
                     digits: "Chỉ được nhập số",
                     required: "Chưa nhập số điện thoại",
-                    minlength: jQuery.validator.format("Vui lòng nhập tối thiểu {0} kí tự")
+                    minlength: jQuery.validator.format("Vui lòng nhập tối thiểu {0} kí tự"),
+                    maxlength: jQuery.validator.format("Vui lòng nhập tối đa {0} kí tự")
                 },
                 PWD: {
                     required: "Chưa nhập mật khẩu",
@@ -68,14 +70,15 @@
 @if (ViewBag.Error != null)
 {
     <div class="alert alert-dismissible
-              @if (ViewBag.Error == 13 || ViewBag.FullName == 0||ViewBag.Email==0||ViewBag.SoDienThoai==0) {<text>alert-warning</text>}
+              @if (ViewBag.Error == 0||ViewBag.Error == 13 || ViewBag.FullName == 0||ViewBag.Email==0||ViewBag.SoDienThoai==0) {<text>alert-warning</text>}
                   else {<text>hidden</text> }
                   " role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         @if (ViewBag.Error == 13)
         {<text>Sai mật khẩu xác nhận</text>}
-        @if (ViewBag.FullName == 0 && ViewBag.Email == 0 && ViewBag.SoDienThoai == 0)
+        @if (ViewBag.Error == 0)
         {<text>Không có trường nào được cập nhật do dữ liệu vừa nhập trùng với dữ liệu cũ</text>}
+
         else if (ViewBag.FullName == 0 || ViewBag.Email == 0 || ViewBag.SoDienThoai == 0)
         {
             if (ViewBag.FullName == 0 || ViewBag.Email == 0 || ViewBag.SoDienThoai == 0)
