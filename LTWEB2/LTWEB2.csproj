@@ -469,6 +469,7 @@
     <Content Include="Views\NguoiDungs\Index.cshtml" />
     <Content Include="Views\NguoiDung\Edit.cshtml" />
     <Content Include="Views\NguoiDung\ChangePassword.cshtml" />
+    <Content Include="Views\SanPham\Detail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

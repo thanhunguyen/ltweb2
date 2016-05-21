@@ -23,6 +23,7 @@ namespace LTWEB2.Controllers
                 //   .Where(p => p.NhaSanXuatID == id).ToList();
 
                 var query = ctx.SanPham.Where(p => p.NhaSanXuatID == id);
+                //tang luot view
 
                 int n = query.Count();
 
