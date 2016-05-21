@@ -18,6 +18,10 @@
             font-size: 11pt;
             color: #f00;
         }
+         .padding{
+            padding-top:8px;
+
+        }
     </style>
 }
 
@@ -50,10 +54,48 @@
                         Xuất sứ: @c.XuatXu<br />
                         <br />
                         <p>
-                            <a href="@Url.Action("Detail","SanPham",new { id=c.SanPhamID})" class="btn btn-primary" role="button">
-                                <i class="fa fa-list-ul"></i>
-                                Chi Tiết
-                            </a>
+                            <button @Url.Action("Detail","SanPham" ) type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                Chi tiết
+                            </button>
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <img width="300" height="400" src=" ~/Hinh/SP/@c.SanPhamID/main_hinh.jpg" title="@c.TenSanPham" />
+
+                                                </div>
+                                                <div class="col-md-12 caption-lg-orange">
+                                                    <h3>@c.TenSanPham</h3>
+
+                                                </div>
+                                                <div class="col-md-12 padding">
+                                                    <span class="caption-lg-red">Giá bán: @string.Format("{0:N0}", c.GiaBan)</span>
+
+                                                </div>
+                                                <div class="col-md-12 padding">
+                                                    Số lượng: @c.SoLuongTon
+                                                </div>
+                                                <div class="col-md-12 padding">
+                                                    @Html.Raw(HttpUtility.HtmlDecode(c.MoTa))
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
                             <a href="#" class="btn btn-success" role="button">
                                 <i class="fa fa-cart-plus"></i>
                                 Dặt hàng
