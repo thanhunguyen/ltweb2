@@ -39,7 +39,7 @@
           <Property Name="TenDangNhap" Type="nvarchar" MaxLength="30" />
           <Property Name="MatKhau" Type="nvarchar" MaxLength="100" />
           <Property Name="Email" Type="nvarchar" MaxLength="30" />
-          <Property Name="SoDienThoai" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SoDienThoai" Type="int" />
           <Property Name="QuyenHan" Type="int" />
         </EntityType>
         <EntityType Name="NhaSanXuat">
@@ -197,7 +197,7 @@
           <Property Name="TenDangNhap" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="MatKhau" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="SoDienThoai" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SoDienThoai" Type="Int32" />
           <Property Name="QuyenHan" Type="Int32" />
           <NavigationProperty Name="GioHang" Relationship="Self.FK_GioHang_NguoiDung" FromRole="NguoiDung" ToRole="GioHang" />
         </EntityType>

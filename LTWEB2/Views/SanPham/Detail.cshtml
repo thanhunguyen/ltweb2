@@ -1,0 +1,74 @@
+﻿@using LTWEB2.Models
+
+@model SanPham
+
+@section view_title{
+    <span class="caption-lg-red"> @Model.TenSanPham</span>
+}
+
+@section css{
+    <style type="text/css">
+        .caption-lg-orange {
+            font-weight: bold;
+            font-size: 13pt;
+            color: #fc6e04;
+        }
+
+        .caption-lg-red {
+            font-weight: bold;
+            font-size: 11pt;
+            color: #f00;
+        }
+        .padding{
+            padding-top:8px;
+
+        }
+    </style>
+
+}
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Launch demo modal
+</button>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <img width="300" height="400" src=" ~/Hinh/SP/@Model.SanPhamID/main_hinh.jpg" title="@Model.TenSanPham" />
+
+                    </div>
+                    <div class="col-md-12 caption-lg-orange">
+                        <h3>@Model.TenSanPham</h3>
+
+                    </div>
+                    <div class="col-md-12 padding">
+                        <span class="caption-lg-red">Giá bán: @string.Format("{0:N0}", Model.GiaBan)</span>
+
+                    </div>
+                    <div class="col-md-12 padding">
+                        Số lượng: @Model.SoLuongTon
+                    </div>
+                    <div class="col-md-12 padding">
+                        @Html.Raw(HttpUtility.HtmlDecode(Model.MoTa))
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+

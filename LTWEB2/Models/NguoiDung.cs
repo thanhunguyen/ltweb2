@@ -25,7 +25,7 @@ namespace LTWEB2.Models
         public string TenDangNhap { get; set; }
         public string MatKhau { get; set; }
         public string Email { get; set; }
-        public Nullable<decimal> SoDienThoai { get; set; }
+        public Nullable<int> SoDienThoai { get; set; }
         public Nullable<int> QuyenHan { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
